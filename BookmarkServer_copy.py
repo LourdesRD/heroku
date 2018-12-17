@@ -46,10 +46,6 @@ import requests
 from urllib.parse import unquote, parse_qs
 import os
 
-import threading
-from socketserver import ThreadingMixIn
-
-
 memory = {}
 
 form = '''<!DOCTYPE html>
@@ -82,10 +78,8 @@ def CheckURI(uri, timeout=5):
     # 1. Write this function.  Delete the following line.
     raise NotImplementedError("Step 1 isn't written yet.")
 
-#class Shortener(http.server.BaseHTTPRequestHandler):
-class ThreadHTTPServer(ThreadingMixIn, http.server.HTTPServer):
-    "This is an HTTPServer that supports thread-based concurrency."
 
+class Shortener(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         # A GET request will either be for / (the root path) or for /some-name.
         # Strip off the / and we have either empty string or a name.
@@ -142,11 +136,7 @@ class ThreadHTTPServer(ThreadingMixIn, http.server.HTTPServer):
             raise NotImplementedError("Step 5 isn't written yet!")
 
 if __name__ == '__main__':
-    #  port = int(os.environ.get('PORT',8000))
-    # server_address = (port, 8000)
-    # httpd = http.server.HTTPServer(server_address, Shortener)
-    # httpd.serve_forever()
-    port = intport = int(os.environ.get('PORT', 8000))
-    server_address = ('', port)
-    httpd = ThreadHTTPServer(server_address, Shortener)
+    port = int(os.environ.get('PORT',8000))
+    server_address = (port, 8000)
+    httpd = http.server.HTTPServer(server_address, Shortener)
     httpd.serve_forever()
