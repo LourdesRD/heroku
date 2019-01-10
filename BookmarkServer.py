@@ -82,7 +82,7 @@ def CheckURI(uri, timeout=5):
     # 1. Write this function.  Delete the following line.
     raise NotImplementedError("Step 1 isn't written yet.")
 
-class Shortener(http.server.BaseHTTPRequestHandler):
+#class Shortener(http.server.BaseHTTPRequestHandler):
 class ThreadHTTPServer(ThreadingMixIn, http.server.HTTPServer):
     "This is an HTTPServer that supports thread-based concurrency."
 
